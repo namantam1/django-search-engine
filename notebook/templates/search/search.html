@@ -1,0 +1,39 @@
+<h2>Search</h2>
+
+    <form method="get" action=".">
+        <table>
+            <input placeholder="Some keywords ..." type="text" name="q">
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <input type="submit" value="Search">
+                </td>
+            </tr>
+        </table>
+
+        {% if query %}
+            <h3>Results</h3>
+
+            {% for result in page %}
+                <p>
+                    <a href="#">{{ result.title }}</a>
+                    <p>{{result.body}}</p>
+                </p>
+            {% empty %}
+                <p>No results found.</p>
+            {% endfor %}
+
+            <h2>More like this</h2>
+            {% for result in more %}
+                <p>
+                    <a href="#">{{ result.title }}</a>
+                    <p>{{result.body}}</p>
+                </p>
+            {% empty %}
+                <p>No more found.</p>
+            {% endfor %}
+
+        {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+        {% endif %}
+    </form>
